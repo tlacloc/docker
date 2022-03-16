@@ -27,4 +27,4 @@ jobs:
       run: docker build . --file Dockerfile --tag ${{ github.repository }}:$(date +%s)
 
     - name: Docker Push
-      run: docker push ${{secrets.DOCKER_USER}}/${{ github.repository }}
+      run: docker push ${{secrets.DOCKER_USER}}/${{ github.event.repository.name }}
