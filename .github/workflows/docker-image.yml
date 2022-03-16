@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  DOCKER_USER: ${{secrets.DOCKER_USER}}
-  DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
 
@@ -20,6 +16,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: docker login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        IMAGE_NAME: ${{ github.repository }}
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
